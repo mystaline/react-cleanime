@@ -5,6 +5,7 @@ import ErrorBoundary from '../components/ErrorBoundary'
 import { getAnimeById } from '../api/Api'
 import { motion } from 'framer-motion'
 import { BiPlay, BiStar, BiCalendar } from 'react-icons/bi'
+import useSEO from '../hooks/useSEO'
 
 interface Studio {
   mal_id: number
@@ -51,15 +52,21 @@ const AnimeDetail: React.FC = () => {
   const [anime, setAnime] = useState<Anime | null>(null)
   const [loading, setLoading] = useState(true)
 
+  useSEO({
+    title: anime?.title ?? 'Anime Detail',
+    description: anime?.synopsis
+      ? anime.synopsis.slice(0, 150) + '...'
+      : 'View full anime details, synopsis, genres, and more on Cleanime.',
+    image: anime?.images.jpg.large_image_url,
+  })
+
   useEffect(() => {
     const fetchAnime = async () => {
       if (id) {
         setLoading(true)
         const res = await getAnimeById(id)
         if (res) {
-          setAnime(res.data)
-          const title = document.querySelector('title')
-          if (title) title.textContent = `${res.data.title} - Cleanime`
+          setAnime(res.data as unknown as Anime)
         }
         setLoading(false)
       }

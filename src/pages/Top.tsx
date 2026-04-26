@@ -1,4 +1,5 @@
-import React, { useEffect, useState, useRef, useCallback } from 'react'
+import React, { useEffect, useState, useRef } from 'react'
+import useSEO from '../hooks/useSEO'
 import Header from '../components/Header'
 import AnimeGrid from '../components/AnimeGrid'
 import SearchBar from '../components/SearchBar'
@@ -27,10 +28,7 @@ const Top: React.FC = () => {
   const sentinelRef = useRef<HTMLDivElement>(null)
   const [hasMore, setHasMore] = useState(true)
 
-  useEffect(() => {
-    const title = document.querySelector('title')
-    if (title) title.textContent = 'Top Anime - Cleanime'
-  }, [])
+  useSEO({ title: 'Top Anime', description: 'Best anime of all time ranked by score.' })
 
   // Reset pagination when NSFW filter changes
   useEffect(() => {

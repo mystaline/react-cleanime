@@ -7,6 +7,7 @@ import { getSeasonAnime } from '../api/Api'
 import { motion } from 'framer-motion'
 import { BiPlay, BiChevronUpCircle } from 'react-icons/bi'
 import { useNSFW } from '../features/NSFWContext'
+import useSEO from '../hooks/useSEO'
 
 interface Anime {
   mal_id: number
@@ -28,10 +29,7 @@ const Current: React.FC = () => {
   const sentinelRef = useRef<HTMLDivElement>(null)
   const [hasMore, setHasMore] = useState(true)
 
-  useEffect(() => {
-    const title = document.querySelector('title')
-    if (title) title.textContent = 'Now Airing - Cleanime'
-  }, [])
+  useSEO({ title: 'Now Airing', description: "This season's hottest anime releases currently airing." })
 
   // Reset pagination when NSFW filter changes
   useEffect(() => {

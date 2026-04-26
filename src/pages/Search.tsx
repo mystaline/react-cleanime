@@ -7,6 +7,7 @@ import { getSearch } from '../api/Api'
 import { motion } from 'framer-motion'
 import { BiSearch, BiChevronUpCircle } from 'react-icons/bi'
 import { useNSFW } from '../features/NSFWContext'
+import useSEO from '../hooks/useSEO'
 
 interface Anime {
   mal_id: number
@@ -27,10 +28,14 @@ const Search: React.FC = () => {
   const [page, setPage] = useState(1)
   const sentinelRef = useRef<HTMLDivElement>(null)
   const [hasMore, setHasMore] = useState(true)
+  const decoded = decodeURIComponent(name ?? '')
+
+  useSEO({
+    title: `Search: ${decoded}`,
+    description: `Anime search results for "${decoded}" on Cleanime.`,
+  })
 
   useEffect(() => {
-    const title = document.querySelector('title')
-    if (title) title.textContent = `Search: ${name} - Cleanime`
     setPage(1)
     setAnimes([])
     setHasMore(true)
@@ -133,7 +138,7 @@ const Search: React.FC = () => {
             </h1>
             <p className="text-gray-400 text-lg max-w-2xl mx-auto">
               Found results for{' '}
-              <span className="text-kitsune-pink font-bold">"{decodeURIComponent(name || '')}"</span>
+              <span className="text-kitsune-pink font-bold">"{decoded}"</span>
             </p>
           </motion.div>
         </div>
@@ -151,11 +156,6 @@ const Search: React.FC = () => {
             <BiSearch className="text-2xl text-kitsune-lime flex-shrink-0" />
             <p className="text-gray-300">
               Showing <span className="text-kitsune-lime font-bold">{animes.length}</span> results
-              {totalResults > 1 && (
-                <span className="text-gray-400 ml-2">
-                  (Page {page} of {totalResults})
-                </span>
-              )}
             </p>
           </motion.div>
         )}

@@ -1,7 +1,7 @@
 import axios from 'axios'
 import cacheManager from '../utils/cacheManager'
 
-const API_BASE = 'https://api.jikan.moe/v4'
+const API_BASE = import.meta.env.VITE_API_BASE_URL
 
 export interface AnimeResponse {
   data: any[]
@@ -38,7 +38,7 @@ const fetchWithCache = async <T,>(url: string, cacheTTL = 60000): Promise<T | un
   }
 }
 
-export const getAllAnime = async (page = 1, allowNSFW = false): Promise<AnimeResponse | undefined> => {
+export const getAllAnime = async (_page = 1, allowNSFW = false): Promise<AnimeResponse | undefined> => {
   const url = `${API_BASE}/anime?limit=15${getSFWParam(allowNSFW)}`
   return fetchWithCache<AnimeResponse>(url, 60000)
 }

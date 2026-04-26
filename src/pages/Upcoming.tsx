@@ -7,6 +7,7 @@ import { getUpcomingAnime } from '../api/Api'
 import { motion } from 'framer-motion'
 import { BiStar, BiChevronUpCircle } from 'react-icons/bi'
 import { useNSFW } from '../features/NSFWContext'
+import useSEO from '../hooks/useSEO'
 
 interface Anime {
   mal_id: number
@@ -27,10 +28,7 @@ const Upcoming: React.FC = () => {
   const sentinelRef = useRef<HTMLDivElement>(null)
   const [hasMore, setHasMore] = useState(true)
 
-  useEffect(() => {
-    const title = document.querySelector('title')
-    if (title) title.textContent = 'Upcoming Anime - Cleanime'
-  }, [])
+  useSEO({ title: 'Upcoming Anime', description: 'Highly anticipated upcoming anime releases coming soon.' })
 
   // Reset pagination when NSFW filter changes
   useEffect(() => {
