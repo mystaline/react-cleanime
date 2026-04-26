@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#0D0D0D" />
+
+    <!-- Primary Meta -->
+    <title>Cleanime - Anime Explorer</title>
+    <meta
+      name="description"
+      content="Discover trending, current, and upcoming anime. Browse top-ranked series, seasonal picks, and upcoming releases with Cleanime."
+    />
+    <meta
+      name="keywords"
+      content="anime, anime explorer, top anime, seasonal anime, upcoming anime, jikan, majo no tabitabi"
+    />
+    <meta name="robots" content="index, follow" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="%VITE_APP_URL%" />
+    <meta property="og:site_name" content="Cleanime" />
+    <meta property="og:title" content="Cleanime - Anime Explorer" />
+    <meta
+      property="og:description"
+      content="Discover trending, current, and upcoming anime."
+    />
+    <meta property="og:image" content="%VITE_APP_URL%/og-preview.jpg" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Cleanime - Anime Explorer" />
+    <meta
+      name="twitter:description"
+      content="Discover trending, current, and upcoming anime."
+    />
+    <meta name="twitter:image" content="%VITE_APP_URL%/og-preview.jpg" />
+
+    <!-- Favicon -->
+    <link rel="icon" href="/cleanime-small.png" />
+    <link rel="apple-touch-icon" href="/logo192.png" />
+
+    <!-- JSON-LD -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "Cleanime",
+        "url": "%VITE_APP_URL%",
+        "description": "Discover trending, current, and upcoming anime.",
+        "potentialAction": {
+          "@type": "SearchAction",
+          "target": "%VITE_APP_URL%/search/{search_term_string}",
+          "query-input": "required name=search_term_string"
+        }
+      }
+    </script>
+  </head>
+  <body class="bg-kitsune-black">
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

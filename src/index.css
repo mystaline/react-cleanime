@@ -1,5 +1,10 @@
 @import url("https://fonts.googleapis.com/css2?family=Exo+2&family=Lora:wght@500&family=Orbitron:wght@500&family=Special+Elite&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Cabin&family=Nunito&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Roc+Grotesk:wght@400;600&family=Clash+Grotesk:wght@400;600&family=Inter+Tight:wght@400;600;700&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 .font-nunito {
   font-family: "Nunito", Helvetica, sans-serif;
@@ -70,5 +75,52 @@ img.animg:hover {
 }
 
 ::-webkit-scrollbar-track {
-  background: rgb(229 231 235);
+  background: #1A1A1A;
+}
+
+/* Kitsune Dark Theme */
+:root {
+  --kitsune-black: #0D0D0D;
+  --kitsune-pink: #FF006E;
+  --kitsune-lime: #00FF41;
+  --kitsune-gray: #1A1A1A;
+  --kitsune-border: #2A2A2A;
+}
+
+body {
+  @apply bg-kitsune-black text-white;
+}
+
+/* Link styling */
+a {
+  @apply text-kitsune-pink hover:text-kitsune-lime transition-colors;
+}
+
+/* Button styling */
+button {
+  @apply font-bold transition-all;
+}
+
+button:hover {
+  @apply scale-105;
+}
+
+/* Card styling */
+.card {
+  @apply bg-kitsune-gray border border-kitsune-border rounded-lg p-4 transition-all hover:border-kitsune-pink;
+}
+
+/* Scrollbar dark */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #FF006E;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #00FF41;
 }
