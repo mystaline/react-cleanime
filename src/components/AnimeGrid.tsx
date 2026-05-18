@@ -45,7 +45,7 @@ const AnimeGrid: React.FC<AnimeGridProps> = ({ animes }) => {
       animate="visible"
       className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 md:gap-6"
     >
-      {animes.map((anime) => (
+      {animes.filter((a, i, arr) => arr.findIndex(b => b.mal_id === a.mal_id) === i).map((anime) => (
         <motion.div key={anime.mal_id} variants={itemVariants}>
           <Link to={`/anime/${anime.mal_id}`}>
             <div className="group relative overflow-hidden rounded-lg bg-kitsune-gray border border-kitsune-border hover:border-kitsune-pink transition-all hover:shadow-lg hover:shadow-kitsune-pink/50">
