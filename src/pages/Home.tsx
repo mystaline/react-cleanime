@@ -42,40 +42,29 @@ const Home: React.FC = () => {
   }, []);
 
   useEffect(() => {
+    let cancelled = false;
+
     const getData = async () => {
       if (topAnime.length < 1) {
         const res = await getTopAnime(1, allowNSFW);
-        if (res) {
-          setTopAnime(res.data.slice(0, items));
-        }
+        if (res && !cancelled) setTopAnime(res.data.slice(0, items));
       }
 
       if (currentAnime.length < 1) {
         const res = await getSeasonAnime(1, allowNSFW);
-        if (res) {
-          setCurrentAnime(res.data.slice(0, items));
-        }
+        if (res && !cancelled) setCurrentAnime(res.data.slice(0, items));
       }
 
       if (upcomingSeason.length < 1) {
         const res = await getUpcomingAnime(1, allowNSFW);
-        if (res) {
-          setUpcomingSeason(res.data.slice(0, items));
-        }
+        if (res && !cancelled) setUpcomingSeason(res.data.slice(0, items));
       }
     };
 
     getData();
-  }, [
-    items,
-    topAnime.length,
-    currentAnime.length,
-    upcomingSeason.length,
-    setTopAnime,
-    setCurrentAnime,
-    setUpcomingSeason,
-    allowNSFW,
-  ]);
+    return () => { cancelled = true; };
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [items, allowNSFW]);
 
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
